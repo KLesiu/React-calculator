@@ -1,0 +1,32 @@
+header{
+    align-items: flex-start;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    
+    height: 40%;
+   
+    width: 100%;
+}
+header h1{
+    font-size: 35px;
+    margin-left: 2%;
+    width: 50%;
+}
+header h2{
+    font-size: 25px;
+    margin-top: 6%;
+    width: 40%;
+    text-align: end;
+}
+.lastOperation{
+    color: grey;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+header p{
+    font-size: 40px;
+    width: 90%;
+    text-align: end;
+    margin:0
+}

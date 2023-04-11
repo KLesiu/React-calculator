@@ -1,0 +1,17 @@
+.operationBoard{
+    display: flex;
+    flex-wrap: wrap;
+    height: 60%;
+    width: 100%;
+}
+#equal{
+    background-color: rgb(14, 105, 158);
+    color: black;
+}
+.operationBoard button{
+    background-color: rgb(39, 39, 39);
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+width: 25%;
+}
