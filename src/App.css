@@ -13,3 +13,13 @@
   margin-left: 30%;
 width: 40vw;
 }
+@media screen and (max-width:1000px) {
+  .calculator{
+    margin: 0;
+    width: 60vw;
+
+  }
+  .App{
+    justify-content: center;
+  }
+}
