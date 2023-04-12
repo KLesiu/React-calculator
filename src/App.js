@@ -2,12 +2,15 @@ import './App.css';
 import Header from './components/Header';
 import { useState } from 'react';
 import Main from './components/Main';
+import History from './components/History';
 function App() {
   const [number,setNumber]=useState('0')
   const [prevNumber,setPrevNumber]=useState('')
   const [start,setStart]=useState(false)
   const [operation,setOperation]=useState('')
   const [counterDot,setCounterDot]=useState(0)
+  const [lastOperations,setLastOperations]=useState([])
+  const [showHistory,setShowHistory]=useState(false)
 
   
   const handleChange=(e)=>{
@@ -25,8 +28,9 @@ function App() {
    
   }
   const handleChangeOperation=(e)=>{
+ 
     if(e.target.textContent==='.'){
-      if(parseInt(number)!==number) return
+      if(parseInt(number)!==parseFloat(number)) return
       if(counterDot===1) return
       setCounterDot(1)
       setStart(true)
@@ -70,11 +74,30 @@ function App() {
       
       
     })
-   
+   setLastOperations([...lastOperations,
+    lastOperation(number,prevNumber,operation)])
     setPrevNumber('')
     setOperation('')
     setStart(false)
   
+  }
+  const lastOperation=(current,prev,operation)=>{
+    if(operation==='+'){
+      
+      return `${prev} ${operation} ${current} = ${parseFloat(prev)+parseFloat(current)}`
+    }
+    else if(operation==='-'){
+    
+      return `${prev} ${operation} ${current} = ${parseFloat(prev)-parseFloat(current)}`
+    }
+    else if(operation==='X'){
+      
+      return `${prev} ${operation} ${current} = ${parseFloat(prev)*parseFloat(current)}`
+    }
+    else if(operation==='/'){
+   
+      return `${prev} ${operation} ${current} = ${parseFloat(prev)/parseFloat(current)}`
+    }
   }
   const clear=()=>{
     setNumber(0)
@@ -153,15 +176,35 @@ function App() {
     
 
   }
+  const getHistory=()=>{
+    if(showHistory===false) setShowHistory(true)
+    else setShowHistory(false)
+  }
+
+  if(showHistory===true){
+    return(
+      <div className="App">
+      <section className='calculator'>
+     <Header history={getHistory}  operation={operation} prev={prevNumber} number={number} />
+     <Main negative={getNegative} sqrt={getSqrt} power={getPower} fraction={getFraction} back={back} percent={getPercent} clearCurrent={clearCurrentNumber} clear={clear} result={showResult} operation={handleChangeOperation} change={handleChange}   />
+     
+      </section>
+      <History history={lastOperations} />
+     </div>
+    )
+  }
+  else{
+    return (
+      <div className="App">
+      <section className='calculator'>
+     <Header history={getHistory}  operation={operation} prev={prevNumber} number={number} />
+     <Main negative={getNegative} sqrt={getSqrt} power={getPower} fraction={getFraction} back={back} percent={getPercent} clearCurrent={clearCurrentNumber} clear={clear} result={showResult} operation={handleChangeOperation} change={handleChange}   />
   
-  return (
-    <div className="App">
-     <section className='calculator'>
-    <Header  operation={operation} prev={prevNumber} number={number} />
-    <Main negative={getNegative} sqrt={getSqrt} power={getPower} fraction={getFraction} back={back} percent={getPercent} clearCurrent={clearCurrentNumber} clear={clear} result={showResult} operation={handleChangeOperation} change={handleChange}   />
-     </section>
-    </div>
-  );
+      </section>
+     </div>
+      );
+  }
+ 
 }
 
 export default App;

@@ -1,0 +1,22 @@
+.history{
+    border: 1px solid white;
+    color: white;
+    height: 80vh;
+    width: 20vw;
+}
+.history h3{
+    text-align: center;
+    width: 100%;
+
+}
+.history ul{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    gap: 10px;
+    list-style-type: none;
+    padding: 0;
+    
+    width: 100%;
+}
