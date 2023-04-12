@@ -9,9 +9,9 @@ return(
         <button onClick={props.clearCurrent}>CE</button>
         <button onClick={props.clear}>C</button>
         <button onClick={props.back}>Back</button>
-        <button >1/x</button>
-        <button >x^2</button>
-        <button >Vx</button>
+        <button onClick={props.fraction} >1/x</button>
+        <button onClick={props.power} >x^2</button>
+        <button onClick={props.sqrt} >Vx</button>
         <button onClick={props.operation}>/</button>
         <button onClick={props.change}>7</button>
         <button onClick={props.change}>8</button>
@@ -25,7 +25,7 @@ return(
         <button onClick={props.change}>2</button>
         <button onClick={props.change}>3</button>
         <button onClick={props.operation}>+</button>
-        <button >+/-</button>
+        <button onClick={props.negative} >+/-</button>
         <button onClick={props.change}>0</button>
         <button onClick={props.operation}>.</button>
         <button onClick={props.result} id="equal">=</button>
