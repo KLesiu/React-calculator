@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Main from './components/Main';
 import History from './components/History';
 function App() {
+  // Declare states
   const [number,setNumber]=useState('0')
   const [prevNumber,setPrevNumber]=useState('')
   const [start,setStart]=useState(false)
@@ -12,7 +13,7 @@ function App() {
   const [lastOperations,setLastOperations]=useState([])
   const [showHistory,setShowHistory]=useState(false)
 
-  
+  // Get textContent from eventListener and return it when start===false,if start===true add textContent to string at state number
   const handleChange=(e)=>{
     if(start===false){
       setNumber(e.target.textContent)
@@ -27,6 +28,7 @@ function App() {
     }
    
   }
+  // Get textContent from eventListener and change operation state if textContent==='.' add '.' to number, set prevNumber to the number then set number to 0, reset start state and show result  if user click one more time at any mathematic operation  
   const handleChangeOperation=(e)=>{
  
     if(e.target.textContent==='.'){
@@ -49,6 +51,7 @@ function App() {
     }
    
   }
+  // If number and prevNumber are '' return, if not, return result from current mathematic operation and set to number state, add operation to lastOperations and reset prevNumber, operation and start 
   const showResult=()=>{
    
    if(number===''||prevNumber==='') return
@@ -81,6 +84,7 @@ function App() {
     setStart(false)
   
   }
+  // Return lastOperation as string
   const lastOperation=(current,prev,operation)=>{
     if(operation==='+'){
       
@@ -99,6 +103,7 @@ function App() {
       return `${prev} ${operation} ${current} = ${parseFloat(prev)/parseFloat(current)}`
     }
   }
+  // Reset states: number,prevNumber,start and operation
   const clear=()=>{
     setNumber(0)
     setPrevNumber('')
@@ -106,25 +111,28 @@ function App() {
     setOperation('')
 
   }
+  // Reset states: number and start
   const clearCurrentNumber=()=>{
     setNumber(0)
     setStart(false)
   }
+  // Get percent from current number
   const getPercent=()=>{
     setNumber(()=>{
       return number/100
     })
   }
+  // Get fration from number if number is not 0. Reset prevNumber,operation and start
   const getFraction=()=>{
    
     const fraction=1/parseFloat(number)
     if(fraction === Infinity) return
-    console.log(fraction)
     setNumber(fraction)
     setPrevNumber('')
     setOperation('')
     setStart(false)
   }
+  // Get power from number and reset prevNumber,operation and start
   const getPower=()=>{
     const power=Math.pow(parseFloat(number),2)
     setNumber(power)
@@ -133,6 +141,7 @@ function App() {
     setStart(false)
 
   }
+  // Get sqrt if number > 0 and reset prevNumber,operation and start, if not return. 
   const getSqrt=()=>{
     if(number<0) return
     const sqrt=Math.sqrt(parseFloat(number))
@@ -142,6 +151,7 @@ function App() {
     setStart(false)
 
   }
+  // Get opposite number 
   const getNegative=()=>{
     const numberC=document.querySelector('.current').textContent
     
@@ -159,6 +169,7 @@ function App() {
     })
 
   }
+  // Get current number and split it. Delete last element and return newNumber, if newNumber==='' set number to 0 and start to false
   const back=()=>{
     if(number===0) return
     const current=document.querySelector('.current').textContent
@@ -176,6 +187,7 @@ function App() {
     
 
   }
+  // Set showHistory state
   const getHistory=()=>{
     if(showHistory===false) setShowHistory(true)
     else setShowHistory(false)
